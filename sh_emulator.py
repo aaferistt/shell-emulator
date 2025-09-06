@@ -14,7 +14,7 @@ class VNode:
     perms: int = 0o755
     parent: Optional["Dir"] = None
     def path(self) -> str:
-        parts = []
+        parts: List[str] = []
         node: Optional[VNode] = self
         while node and node.parent is not None:
             parts.append(node.name)
@@ -121,11 +121,7 @@ def resolve(path: str) -> VNode:
 
 def _fmt_perms(mode: int, is_dir: bool) -> str:
     def triad(bits: int) -> str:
-        return "".join([
-            "r" if bits & 4 else "-",
-            "w" if bits & 2 else "-",
-            "x" if bits & 1 else "-",
-        ])
+        return "".join(["r" if bits & 4 else "-", "w" if bits & 2 else "-", "x" if bits & 1 else "-"])
     t = "d" if is_dir else "-"
     u = triad((mode >> 6) & 7)
     g = triad((mode >> 3) & 7)
@@ -229,7 +225,7 @@ def cmd_mv(args: List[str]) -> int:
         if not src_node.parent:
             print("mv: cannot move root", file=sys.stderr)
             return 1
-        src_parent: Dir = src_node.parent
+        src_parent: Dir = src_node.parent 
 
         if dst.endswith("/"):
             dst = dst[:-1]
@@ -243,8 +239,7 @@ def cmd_mv(args: List[str]) -> int:
             print("mv: invalid destination", file=sys.stderr)
             return 1
         *dir_parts, new_name = parts
-
-        dest_dir: Dir = base
+        dest_dir: Dir = base  
         for p in dir_parts:
             node = dest_dir.children.get(p) if isinstance(dest_dir, Dir) else None
             if not node:
@@ -283,15 +278,16 @@ def cmd_conf_dump(args: List[str]) -> int:
     return 0
 
 COMMANDS = {
-    "ls": cmd_ls,
-    "cd": cmd_cd,
-    "history": cmd_history,
-    "tree": cmd_tree,
-    "chmod": cmd_chmod,
-    "mv": cmd_mv,
-    "conf-dump": cmd_conf_dump,
-    "exit": None,
+    "ls":         cmd_ls,
+    "cd":         cmd_cd,
+    "history":    cmd_history,
+    "tree":       cmd_tree,
+    "chmod":      cmd_chmod,
+    "mv":         cmd_mv,
+    "conf-dump":  cmd_conf_dump,
+    "exit":       None,
 }
+
 def run_line(line: str, echo: bool=False) -> Tuple[bool, int]:
     line = line.rstrip("\n")
     if not line.strip():

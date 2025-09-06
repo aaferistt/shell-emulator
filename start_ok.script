@@ -1,10 +1,11 @@
 conf-dump
-ls /
+ls
 tree /
 cd docs
 ls
-cd /
-cd bin
+cd /bin
 ls
+chmod 755 /docs/hello.txt
+mv /docs/hello.txt /docs/hello_renamed.txt
 history
 exit
