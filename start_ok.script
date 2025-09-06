@@ -1,5 +1,10 @@
 conf-dump
+ls /
+tree /
+cd docs
 ls
-cd /tmp
-ls "/path with spaces"
+cd /
+cd bin
+ls
+history
 exit
