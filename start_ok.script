@@ -1,0 +1,5 @@
+conf-dump
+ls
+cd /tmp
+ls "/path with spaces"
+exit
