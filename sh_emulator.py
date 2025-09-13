@@ -166,6 +166,13 @@ def cmd_cd(args: List[str]) -> int:
         print(f"cd: {e}", file=sys.stderr)
         return 1
 
+def cmd_pwd(args: List[str]) -> int:
+    if args:
+        print("pwd: no arguments expected", file=sys.stderr)
+        return 1
+    print(CWD.path())
+    return 0
+
 def cmd_history(args: List[str]) -> int:
     if args:
         print("history: no arguments expected", file=sys.stderr)
@@ -225,7 +232,7 @@ def cmd_mv(args: List[str]) -> int:
         if not src_node.parent:
             print("mv: cannot move root", file=sys.stderr)
             return 1
-        src_parent: Dir = src_node.parent 
+        src_parent: Dir = src_node.parent
 
         if dst.endswith("/"):
             dst = dst[:-1]
@@ -239,7 +246,8 @@ def cmd_mv(args: List[str]) -> int:
             print("mv: invalid destination", file=sys.stderr)
             return 1
         *dir_parts, new_name = parts
-        dest_dir: Dir = base  
+
+        dest_dir: Dir = base
         for p in dir_parts:
             node = dest_dir.children.get(p) if isinstance(dest_dir, Dir) else None
             if not node:
@@ -280,6 +288,7 @@ def cmd_conf_dump(args: List[str]) -> int:
 COMMANDS = {
     "ls":         cmd_ls,
     "cd":         cmd_cd,
+    "pwd":        cmd_pwd,
     "history":    cmd_history,
     "tree":       cmd_tree,
     "chmod":      cmd_chmod,
