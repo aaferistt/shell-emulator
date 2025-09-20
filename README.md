@@ -16,6 +16,20 @@
 `pwd` — показать текущий путь.
 `.bat`-файлы для запуска в отдельном окне.
 
+
+### Запустить с минимальным VFS и скриптом
+python sh_emulator.py --vfs-zip vfs_minimal.zip --startup start_ok.script
+
+### Запустить с глубоким VFS
+python sh_emulator.py --vfs-zip vfs_deep.zip --startup start_deep.script
+
+### Запустить с ошибочным скриптом для демонстрации ошибок
+python sh_emulator.py --vfs-zip vfs_minimal.zip --startup start_error.script
+
+### Запуск в интерактивном режиме (REPL)
+python sh_emulator.py --vfs-zip vfs_minimal.zip
+
+
 ### Клонировать репозиторий
 ```bash
 git clone https://github.com/aaferistt/shell-emulator.git
