@@ -1,0 +1,16 @@
+conf-dump
+ls /
+tree /
+cd usr/local/share
+ls
+cd /var/log
+ls
+cd /home/user/docs
+ls
+pwd
+chmod 755 notes.txt
+ls
+mv notes.txt notes_renamed.txt
+ls
+history
+exit
